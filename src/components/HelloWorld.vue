@@ -1,6 +1,8 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
+    <Counter v-bind:num="num" v-on:incre="increment" v-on:decre="decrement"></Counter> <!-- 调用组件 -->
+    <p>parent: {{num}}</p>
     <h2>Essential Links</h2>
     <ul>
       <li><a href="https://vuejs.org" target="_blank">Core Docs</a></li>
@@ -21,11 +23,26 @@
 </template>
 
 <script>
+
+import Counter from './Counter'  
+
 export default {
   name: 'HelloWorld',
   data () {
     return {
+      num: 10,
       msg: 'Welcome to Your Vue.js App'
+    }
+  },
+  components: { 
+     Counter
+  },
+  methods: {
+    increment(){
+       this.num++
+    },
+    decrement(){
+       this.num--
     }
   }
 }
